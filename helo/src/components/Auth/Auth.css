@@ -1,0 +1,57 @@
+.background{
+    background-image: linear-gradient(99deg, #ff70a6, #ff9770, 40%, #ffd670 73%,
+    #e9ff70);
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.log-box{
+    width: 33%;
+    height: 45%;
+    /* margin: 0 auto; */
+    margin-top: 14.0625%;
+    padding: 10px;
+    position: relative;
+    
+    border-radius: 2px;
+    
+    
+    box-shadow: 0 1px 3px 0
+    rgba(0, 0, 0, .1), 0 1px 2px 0 
+    rgba(0, 0, 0, .2);
+    
+}
+
+.logo {
+    margin-top: 20px;
+    /* margin-left: 20px; */
+}
+
+/* .auth-helo{
+    text-align: center
+} */
+
+
+.auth-helo{
+    /* margin-right: px; */
+    font-size: 90px;
+
+}
+
+.login-register{
+    border-radius: 1px;
+    background-image: radial-gradient(circle at 50% - 46%, 
+    #737373, #403d39);
+    box-shadow: 0 1px 3px 0 rgba(0,0,0, 0.1), 0 1px 2px 0 rgba(0,0,0,0.2);
+    background-color: #403d39;
+    color: #ffffff;
+    font-size: 20px;
+    width: 65%;
+    height: 40px;
+    margin-top: 10px;
+
+}

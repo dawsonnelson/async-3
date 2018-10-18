@@ -15,7 +15,7 @@ export default class Dashboard extends Component {
                             <span>hello world</span>
                         </div>
                         <div className = 'desc'>
-                            <span>desc</span>
+                            <span>Welcome to Helo! Find recommended friends based on your similarities, and even search for them by name. The more you update your profile, the better recommendations we can make!</span>
                         </div>
                     </div>
                     <div className = 'recommended-div'>
