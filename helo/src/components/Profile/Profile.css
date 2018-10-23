@@ -12,8 +12,58 @@
     rgba(0, 0, 0, .1), 0 1px 2px 0 
     rgba(0, 0, 0, .2);
 
+    display: flex;
+    justify-content: flex-start;
+
     overflow: scroll;
 }
+
+.top-pic{
+    /* margin-top: 5px; */
+    margin-bottom: 5px;
+    width: 123px;
+    height: 123px;
+    border:2.5px solid #ff9770;
+}
+
+.top-name-display{
+    margin-top: 40px;
+    margin-left: 10px;
+    width: 123px;
+    height: 100px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.button-display{
+    display: flex;
+    justify-content: space-between;
+    width: 150px;
+    margin-top: 50px;
+    margin-left: 310px;
+}
+
+.update{
+    width: 70px;
+    height: 25px;
+    color: white;
+    background-color: black;
+    font-size: 15px;
+    border-radius: 3px;
+}
+
+.cancel{
+    width: 70px;
+    height: 25px;
+    font-size: 15px;
+    border-radius: 3px;
+    background-color: #f2f2f2
+}
+
+/* .top-name{
+    margin-top: 400px;
+} */
 
 .bottom-div{
     width: 50%;
@@ -100,6 +150,95 @@
 }
 
 .birthday-input{
+    width: 100%;
+    height: 25px;
+    border-color: #ff9770;
+    margin-top: 5px;
+}
+
+.gender{
+    width: 25%;
+    margin-left: 15%;
+    margin-top: 15px;
+    display: inline-block
+}
+
+.gender-display{
+    margin-left: 15px;
+}
+
+.gender-input{
+    width: 100%;
+    height: 25px;
+    border-color: #ff9770;
+    margin-top: 5px;
+}
+
+.birthmonth{
+    width: 25%;
+    margin-left: 20%;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+.birthmonth-display{
+    margin-left: 15px;
+}
+
+.birthmonth-input{
+    width: 100%;
+    height: 25px;
+    border-color: #ff9770;
+    margin-top: 5px;
+}
+
+.hair{
+    width: 25%;
+    margin-left: 15%;
+    margin-top: 15px;
+    display: inline-block
+}
+
+.hair-display{
+    margin-left: 15px;
+}
+
+.hair-input{
+    width: 100%;
+    height: 25px;
+    border-color: #ff9770;
+    margin-top: 5px;
+}
+
+.birthyear{
+    width: 25%;
+    margin-left: 20%;
+    margin-top: 15px;
+    display: inline-block;
+}
+.birthyear-display{
+    margin-left: 15px;
+}
+
+.birthyear-input{
+    width: 100%;
+    height: 25px;
+    border-color: #ff9770;
+    margin-top: 5px;
+}
+
+.eye{
+    width: 25%;
+    margin-left: 15%;
+    margin-top: 15px;
+    display: inline-block
+}
+
+.eye-display{
+    margin-left: 15px;
+}
+
+.eye-input{
     width: 100%;
     height: 25px;
     border-color: #ff9770;

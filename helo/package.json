@@ -5,6 +5,7 @@
   "proxy": "http://localhost:4000",
   "main": "./server/server.js",
   "dependencies": {
+    "auth0-js": "^9.8.1",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "dotenv": "^6.1.0",
@@ -12,6 +13,8 @@
     "express-session": "^1.15.6",
     "massive": "^5.5.1",
     "nodemon": "^1.18.4",
+    "passport": "^0.4.0",
+    "passport-auth0": "^1.0.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-router": "^4.3.1",
