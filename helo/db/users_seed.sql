@@ -12,3 +12,9 @@ CREATE TABLE helo_users (
 	birth_month VARCHAR(200),
 	birth_year VARCHAR(200)
 );
+
+CREATE TABLE friends (
+    id SERIAL PRIMARY KEY,
+    user_id INT,
+    friend_id INT
+);

@@ -20,6 +20,18 @@ export default class Dashboard extends Component {
                     </div>
                     <div className = 'recommended-div'>
                         <span className = 'rec-friend'>Recommended Friends</span>
+                        <text className = 'sort-by'>Sorted by</text>
+                        <select className = 'rec-input'>
+                            <option>First Name</option>
+                            <option>Last name</option>
+                            <option>Gender</option>
+                            <option>Hair Color</option>
+                            <option>Eye Color</option>
+                            <option>Hobby</option>
+                            <option>Birthday Day</option>
+                            <option>Birthday Month</option>
+                            <option>Birth Year</option>
+                        </select>
                     </div>
                 </div>
             </div>

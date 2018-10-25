@@ -42,7 +42,7 @@
     background-color: black;
     font-size: 15px;
     border-radius: 3px;
-    margin-left: 10px;
+    margin-left: 20px;
 }
 
 .search-reset{
@@ -51,5 +51,5 @@
     font-size: 15px;
     border-radius: 3px;
     background-color: #f2f2f2;
-    margin-left: 10px;
+    margin-left: 15px;
 }
