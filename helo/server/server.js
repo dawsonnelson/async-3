@@ -60,6 +60,7 @@ app.get('/auth/callback', async (req, res) => {
     
     let {
     auth0_id, 
+    user_id,
     user_image, 
     first_name,
     last_name,
@@ -73,17 +74,17 @@ app.get('/auth/callback', async (req, res) => {
     } = resWithUserData;
     
     let db = req.app.get('db');
-    console.log('before find user')
-    let foundUser = await db.find_user([auth0_id])
-    console.log('after find user')
+    // console.log('before find user')
+    let foundUser = await db.find_user([user_id])
+    // console.log('after find user')
     if(foundUser[0]){
         req.session.user = foundUser[0]
         res.redirect('/#/dashboard');
     } else {
-        console.log('before create user')
-        let createdUser = await db.create_user([auth0_id, user_image, first_name, last_name, gender, hair_color, eye_color, hobby, birth_day, birth_month, birth_year])
-        console.log('after create user')
-        req.session.user = createdUser[0];
+        // console.log('before create user')
+        let user = await db.create_user([auth0_id, user_image, first_name, last_name, gender, hair_color, eye_color, hobby, birth_day, birth_month, birth_year])
+        // console.log('after create user')
+        req.session.userId = user[0].id;
         res.redirect('/#/dashboard');
     }
 } catch(error){
@@ -102,22 +103,39 @@ app.get('/auth/callback', async (req, res) => {
 //     }
 // }
 
+app.post('/auth/logout', (req, res) =>{
+    req.session.destroy();
+    res.redirect('http://localhost:3000/#/')
+})
+
 app.put(`/api/helo/updateUser`, (req,res)=>{
-    let {firstName, lastName, gender, hairColor, eyeColor, hobby, birthday, birthMonth, birthYear} = req.body
+    console.log('updateUser start')
     const db = req.app.get('db')
-    db.update_user([firstName, lastName, gender, hairColor, eyeColor, hobby, birthday, birthMonth, birthYear])
+    let {firstName, lastName, gender, hairColor, eyeColor, hobby, birthday, birthMonth, birthYear, user_id} = req.body
+    db.update_user([firstName, lastName, gender, hairColor, eyeColor, hobby, birthday, birthMonth, birthYear, user_id])
     .then(resp=>{
         res.status(200).send(resp)
+        console.log(req.session)
     })
     .catch(console.log)
 })
 
-app.get('/api/userData', (req, res) => {
-    if(req.session.user){
-        res.status(200).send(req.session.user);
-    } else {
-        res.status(401).send("FAILURE")
-    }
+// app.get('/api/userData', (req, res) => {
+//     if(req.session.user){
+//         res.status(200).send(req.session.user);
+//     } else {
+//         res.status(401).send("FAILURE")
+//     }
+// })
+
+app.get(`/api/userData`, (req, res) =>{
+    const db = req.app.get('db')
+    // console.log(req.session.userId)
+    db.get_user([req.session.userId])
+    .then(resp=>{
+        res.status(200).send(resp)
+    })
+    .catch(console.log)
 })
 
 app.listen(SERVER_PORT, () =>{

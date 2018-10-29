@@ -8,7 +8,7 @@ export default class Profile extends Component {
         super(props);
 
         this.state = {
-            test: null,
+            recived: [],
             firstName: null,
             lastName: null,
             gender: 'male',
@@ -24,6 +24,17 @@ export default class Profile extends Component {
 
     }
 
+    componentDidMount(){
+        axios.get(`/api/userData`)
+        .then(res=>{
+            this.setState({
+                recived: res.data
+            })
+            console.log(res.session)
+
+        })
+    }
+
     handleCancel(){
         this.setState({
             test: null
@@ -31,9 +42,8 @@ export default class Profile extends Component {
     }
 
     handleUpdate(){
-        console.log('handle test')
+        const { firstName, lastName, gender, hairColor, eyeColor, hobby, birthday, birthMonth, birthYear, user_id} = this.state
 
-        let { firstName, lastName, gender, hairColor, eyeColor, hobby, birthday, birthMonth, birthYear} = this.state
        axios.put(`/api/helo/updateUser`, {
         firstName, 
         lastName, 
@@ -43,10 +53,12 @@ export default class Profile extends Component {
         hobby, 
         birthday, 
         birthMonth, 
-        birthYear})
+        birthYear,
+        user_id})
        .then(res=>{
            this.props.history.push(`/dashboard`)
        }) 
+       console.log('axios.put')
     }
 
     handleFirstName(amount){
@@ -105,7 +117,7 @@ export default class Profile extends Component {
 
 
     render() {
-        console.log(this.state)
+        // console.log(req.ses)
         return(
             <div className = 'app'>
                 <div className = 'nav'>

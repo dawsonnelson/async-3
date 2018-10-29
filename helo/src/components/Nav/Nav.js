@@ -1,10 +1,26 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
 import '../Nav/Nav.css'
 import image from '../../header_logo.png'
 import search from '../../assets/search.png'
+import axios from 'axios'
 
-export default function Nav (){
+export default class Nav extends Component{
+    constructor(props){
+        super(props);
+
+        this.logoutButton = this.logoutButton.bind(this);
+    }
+
+    logoutButton(){
+        axios.post('/auth/logout')
+        .then( ()=>{
+            this.props.history.push('/');
+        })
+    }
+
+
+render() {
     return(
         <div className = "nav">
             <div className = 'div-helo'>
@@ -19,4 +35,6 @@ export default function Nav (){
             </div>
         </div>
     )
+    }
 }
+

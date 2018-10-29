@@ -1,4 +1,4 @@
-UPDATE users
+UPDATE helo_users
 SET 
     first_name = $1, 
     last_name = $2, 

@@ -1,6 +1,7 @@
 CREATE TABLE helo_users (
 	user_id SERIAL PRIMARY KEY,
 	auth0_id VARCHAR(200),
+	-- users_id VARCHAR(200),
 	user_image VARCHAR(200),
 	first_name VARCHAR(200),
 	last_name VARCHAR(200),

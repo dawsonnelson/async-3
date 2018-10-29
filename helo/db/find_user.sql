@@ -1,2 +1,2 @@
 select * from helo_users
-where auth0_id = $1;
+where user_id = $1;
