@@ -30,7 +30,7 @@ export default class Profile extends Component {
             this.setState({
                 recived: res.data
             })
-            console.log(res.session)
+            // console.log(res.session)
 
         })
     }
@@ -128,7 +128,7 @@ export default class Profile extends Component {
                     <div className = 'top-div'>
                         <img className = 'top-pic' src = {this.props.urlInput} alt=''/>
                         <div className = 'top-name-display'>
-                            <span className = 'top-name'>Jonhathon</span>
+                            <span className = 'top-name'>{this.state.firstName} {this.state.lastName}</span>
                         </div>
                         <div className = 'button-display'>
                             <button className = 'update' onClick = {this.handleUpdate}>Update</button>

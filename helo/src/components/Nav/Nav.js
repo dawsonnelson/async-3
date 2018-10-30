@@ -4,6 +4,7 @@ import '../Nav/Nav.css'
 import image from '../../header_logo.png'
 import search from '../../assets/search.png'
 import axios from 'axios'
+import Search from '../Search/Search';
 
 export default class Nav extends Component{
     constructor(props){
@@ -19,16 +20,27 @@ export default class Nav extends Component{
         })
     }
 
+    handleNaming(){
+        if (this.props.url === '/search'){
+            this.props.url = 'Search'
+            return (this.props.url)
+        } else{
+            this.props.url = 'unknown'
+            return (this.props.url)
+        }
+    }
+
 
 render() {
+    console.log(this.props.url)
     return(
         <div className = "nav">
             <div className = 'div-helo'>
-            <span className = "helo">Helo</span> <Link to = '/dashboard'><img className = 'house' src ={image} alt = 'no'></img></Link> <Link to = '/search'><img className = 'magGlass' src={search} alt = 'no'></img></Link>
+            <span className = "helo">Helo</span> <Link to = '/Dashboard'><img className = 'house' src ={image} alt = 'no'></img></Link> <Link to = '/Search'><img className = 'magGlass' src={search} alt = 'no'></img></Link>
             </div>
 
             <div className = 'div-title'>
-            <span className = "title">Dashboard</span>
+                <span className = "title">{this.handleNaming}</span>
             </div>
             <div className = 'div-logout'>
                <span className = "logout"><Link to = '/'>Logout</Link></span>

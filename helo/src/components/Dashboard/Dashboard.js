@@ -1,9 +1,45 @@
 import React, {Component} from 'react'
 import Nav from '../Nav/Nav'
 import './Dashboard.css'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
+// import profilePic from '../../assets/profilePic.png'
 
 export default class Dashboard extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            // userInfo: [],
+            // user_id: '',
+            // user_image: '',
+            first_name: '',
+            last_name: '',
+            // gender: '',
+            // hair_color: '',
+            // eye_color: '',
+            // hobby: '',
+            // birth_day: '',
+            // birth_month: '',
+            // birth_year: ''
+        }
+    }
+
+    componentDidMount(){
+        // console.log(this.state)
+        axios.get('/api/helo/getInfo')
+        .then(res=>{
+            console.log(res.data[0].first_name)
+
+            this.setState({
+                first_name: res.data[0].first_name,
+                last_name: res.data[0].last_name
+            })
+        })
+    }
+
     render() {
+        // console.log(this.state)
         return(
             <div className = 'app'>
                 <div className = 'nav'>
@@ -12,7 +48,14 @@ export default class Dashboard extends Component {
                 <div className = 'content'>
                     <div className = 'top-content'>
                         <div className = 'name-box'>
-                            <span>hello world</span>
+                            <div className = 'pic'>
+                                <img className = 'img' src={'profilePic'} alt=''></img>
+                            </div>
+                            <div className = 'info'>
+                                <span className = 'firstName'>{this.state.first_name}</span>
+                                <span className = 'lastName'>{this.state.last_name}</span>
+                                <Link to ="/profile">=<button className = 'edit-button'>Edit Profile</button></Link>
+                            </div>
                         </div>
                         <div className = 'desc'>
                             <span>Welcome to Helo! Find recommended friends based on your similarities, and even search for them by name. The more you update your profile, the better recommendations we can make!</span>

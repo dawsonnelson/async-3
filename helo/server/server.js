@@ -33,15 +33,6 @@ app.use(session({
     saveUninitialized: true
 }))
 
-// app.get(`/api/helo/displayUser`, (req,res)=>{
-//     const db = req.app.get(`db`)
-//     db.get_user([req.session.userId])
-//     .then(resp=>{
-//         res.status(200).send(resp)
-//     })
-//     .catch(console.log)
-// })
-
 app.get('/auth/callback', async (req, res) => {
     // console.log('string')
     try{
@@ -58,31 +49,35 @@ app.get('/auth/callback', async (req, res) => {
     
     let resWithUserData = await axios.get(`https://${REACT_APP_DOMAIN}/userinfo?access_token=${rewWithToken.data.access_token}`)
     
-    let {
-    auth0_id, 
-    user_id,
-    user_image, 
-    first_name,
-    last_name,
-    gender,
-    hair_color,
-    eye_color,
-    hobby,
-    birth_day,
-    birth_month,
-    birth_year
-    } = resWithUserData;
+    // let { 
+    // user_id,
+    // user_image, 
+    // first_name,
+    // last_name,
+    // gender,
+    // hair_color,
+    // eye_color,
+    // hobby,
+    // birth_day,
+    // birth_month,
+    // birth_year
+    // } = resWithUserData;
+
+    let auth0_id = resWithUserData.data.sub
+    console.log(resWithUserData.sub)
     
     let db = req.app.get('db');
     // console.log('before find user')
-    let foundUser = await db.find_user([user_id])
+    let foundUser = await db.find_user([auth0_id])
+    // console.log(resWithUserData.data.sub)
+    // console.log(foundUser)
     // console.log('after find user')
     if(foundUser[0]){
         req.session.user = foundUser[0]
         res.redirect('/#/dashboard');
     } else {
         // console.log('before create user')
-        let user = await db.create_user([auth0_id, user_image, first_name, last_name, gender, hair_color, eye_color, hobby, birth_day, birth_month, birth_year])
+        let user = await db.create_user([auth0_id])
         // console.log('after create user')
         req.session.userId = user[0].id;
         res.redirect('/#/dashboard');
@@ -109,35 +104,42 @@ app.post('/auth/logout', (req, res) =>{
 })
 
 app.put(`/api/helo/updateUser`, (req,res)=>{
-    console.log('updateUser start')
+    // console.log(req.session.user.user_id)
     const db = req.app.get('db')
-    let {firstName, lastName, gender, hairColor, eyeColor, hobby, birthday, birthMonth, birthYear, user_id} = req.body
+    let {firstName, lastName, gender, hairColor, eyeColor, hobby, birthday, birthMonth, birthYear} = req.body
+    let user_id = req.session.user.user_id
     db.update_user([firstName, lastName, gender, hairColor, eyeColor, hobby, birthday, birthMonth, birthYear, user_id])
     .then(resp=>{
         res.status(200).send(resp)
-        console.log(req.session)
+        // console.log(req.session)
     })
     .catch(console.log)
 })
 
-// app.get('/api/userData', (req, res) => {
-//     if(req.session.user){
-//         res.status(200).send(req.session.user);
-//     } else {
-//         res.status(401).send("FAILURE")
-//     }
-// })
-
-app.get(`/api/userData`, (req, res) =>{
+app.get('/api/helo/getInfo', (req,res) =>{
     const db = req.app.get('db')
-    // console.log(req.session.userId)
-    db.get_user([req.session.userId])
+    // let first_name = req.session.user.first_name
+    // console.log(req.session.user.first_name)
+    db.get_user([req.session.user.first_name])
     .then(resp=>{
         res.status(200).send(resp)
     })
     .catch(console.log)
 })
+
+
 
 app.listen(SERVER_PORT, () =>{
     console.log(`listening on port ${SERVER_PORT}`)
 });
+
+
+// app.get(`/api/userData`, (req, res) =>{
+//     const db = req.app.get('db')
+//     // console.log(req.session)
+//     db.get_user([req.session.userId])
+//     .then(resp=>{
+//         res.status(200).send(resp)
+//     })
+//     .catch(console.log)
+// })
