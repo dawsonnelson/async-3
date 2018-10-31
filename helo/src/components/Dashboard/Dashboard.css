@@ -15,7 +15,7 @@
 .top-content{
     /* display: inline-block */
     display: flex;
-    flex-flow: row nowrap;
+    /* flex-flow: row nowrap; */
     margin-top: 20px;
     
 }
@@ -38,12 +38,24 @@
 
 .info{
     width: 60%;
-    margin-left: 140px;
-    margin-bottom: 50px;
+    margin-left: 0px;
+    margin-top: 10px;
+    float: right;
 }
 
 .pic{
     width: 30%;
+    float: left;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+.img{
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+     
 }
 
 .firstName{
@@ -64,13 +76,6 @@
 }
 
 
-.img{
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    max-height: 100%;
-     
-}
 
 .edit-button{
     width: 100px;

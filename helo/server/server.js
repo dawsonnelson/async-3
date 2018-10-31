@@ -64,7 +64,7 @@ app.get('/auth/callback', async (req, res) => {
     // } = resWithUserData;
 
     let auth0_id = resWithUserData.data.sub
-    console.log(resWithUserData.sub)
+    // console.log(resWithUserData.sub)
     
     let db = req.app.get('db');
     // console.log('before find user')
@@ -119,10 +119,10 @@ app.put(`/api/helo/updateUser`, (req,res)=>{
 app.get('/api/helo/getInfo', (req,res) =>{
     const db = req.app.get('db')
     // let first_name = req.session.user.first_name
-    // console.log(req.session.user.first_name)
-    db.get_user([req.session.user.first_name])
+    // console.log(req.session)
+    db.get_user([req.session.user.user_id])
     .then(resp=>{
-        res.status(200).send(resp)
+        res.status(200).send(resp[0])
     })
     .catch(console.log)
 })

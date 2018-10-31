@@ -1,6 +1,6 @@
 INSERT INTO helo_users ( 
-    auth0_id, 
-    user_image
+    auth0_id 
+    -- user_image
     -- first_name,
     -- last_name,
     -- gender,
@@ -13,6 +13,6 @@ INSERT INTO helo_users (
 
       )
 
-VALUES ($1, $2)
+VALUES ($1)
 
 returning *;

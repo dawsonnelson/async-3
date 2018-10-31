@@ -20,33 +20,56 @@ export default class Nav extends Component{
         })
     }
 
-    handleNaming(){
-        if (this.props.url === '/search'){
-            this.props.url = 'Search'
-            return (this.props.url)
-        } else{
-            this.props.url = 'unknown'
-            return (this.props.url)
-        }
-    }
-
-
 render() {
-    console.log(this.props.url)
-    return(
-        <div className = "nav">
+    var title = this.props.url
+    if(title === '/dashboard'){
+        return (
+            <div className = "nav">
             <div className = 'div-helo'>
             <span className = "helo">Helo</span> <Link to = '/Dashboard'><img className = 'house' src ={image} alt = 'no'></img></Link> <Link to = '/Search'><img className = 'magGlass' src={search} alt = 'no'></img></Link>
             </div>
 
             <div className = 'div-title'>
-                <span className = "title">{this.handleNaming}</span>
+                <span className = "title">Dashboard</span>
             </div>
             <div className = 'div-logout'>
                <span className = "logout"><Link to = '/'>Logout</Link></span>
             </div>
         </div>
-    )
+        )
+    } else if (title === '/search') {
+        return(
+                <div className = "nav">
+                    <div className = 'div-helo'>
+                    <span className = "helo">Helo</span> <Link to = '/Dashboard'><img className = 'house' src ={image} alt = 'no'></img></Link> <Link to = '/Search'><img className = 'magGlass' src={search} alt = 'no'></img></Link>
+                    </div>
+        
+                    <div className = 'div-title'>
+                        <span className = "title">Search</span>
+                    </div>
+                    <div className = 'div-logout'>
+                       <span className = "logout"><Link to = '/'>Logout</Link></span>
+                    </div>
+                </div>
+            )
+    } else if ( title === '/profile') {
+        return(
+                <div className = "nav">
+                    <div className = 'div-helo'>
+                    <span className = "helo">Helo</span> <Link to = '/Dashboard'><img className = 'house' src ={image} alt = 'no'></img></Link> <Link to = '/Search'><img className = 'magGlass' src={search} alt = 'no'></img></Link>
+                    </div>
+        
+                    <div className = 'div-title'>
+                        <span className = "title">Profile</span>
+                    </div>
+                    <div className = 'div-logout'>
+                       <span className = "logout"><Link to = '/'>Logout</Link></span>
+                    </div>
+                </div>
+            )
+        }
     }
 }
 
+
+// console.log(this.props.url)

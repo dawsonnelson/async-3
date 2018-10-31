@@ -24,16 +24,16 @@ export default class Profile extends Component {
 
     }
 
-    componentDidMount(){
-        axios.get(`/api/userData`)
-        .then(res=>{
-            this.setState({
-                recived: res.data
-            })
-            // console.log(res.session)
+    // componentDidMount(){
+    //     axios.get(`/api/userData`)
+    //     .then(res=>{
+    //         this.setState({
+    //             recived: res.data
+    //         })
+    //         // console.log(res.session)
 
-        })
-    }
+    //     })
+    // }
 
     handleCancel(){
         this.setState({
@@ -138,11 +138,11 @@ export default class Profile extends Component {
 
                     <div className = 'bottom-div'>
                         <div className ='first-name'>
-                            <text className = 'first-name-display'>First Name</text>
+                            <span className = 'first-name-display'>First Name</span>
                             <input className = 'first-name-input' onChange = {(e)=>this.handleFirstName(e.target.value)}></input>
                         </div>
                         <div className='hobby'>
-                            <text className = 'hobby-display'>Hobby</text>
+                            <span className = 'hobby-display'>Hobby</span>
                             <select className = "hobby-input" onChange = {(e)=>this.handleHobby(e.target.value)}>
                                 <option value="Video-games">Video-games</option>
                                 <option value="Coding">Coding</option>
@@ -150,11 +150,11 @@ export default class Profile extends Component {
                             </select>
                         </div>
                         <div className ='last-name'>
-                            <text className = 'last-name-display'>Last Name</text>
+                            <span className = 'last-name-display'>Last Name</span>
                             <input className = 'last-name-input' onChange = {(e)=>this.handleLastName(e.target.value)}></input>
                         </div>
                         <div className = 'birthday'>
-                            <text className = 'birthday-display'>Birthday Day</text>
+                            <span className = 'birthday-display'>Birthday Day</span>
                             <select className = "birthday-input" onChange = {(e)=>this.handleBirthday(e.target.value)}>
                                 <option>1</option>
                                 <option>2</option>
@@ -190,7 +190,7 @@ export default class Profile extends Component {
                             </select>
                         </div>
                         <div className = 'gender'>
-                            <text className = 'gender-display'>Gender</text>
+                            <span className = 'gender-display'>Gender</span>
                             <select className = 'gender-input' onChange = {(e) =>this.handleGender(e.target.value)}>
                                 <option>Male</option>
                                 <option>Felmale</option>
@@ -198,7 +198,7 @@ export default class Profile extends Component {
                             </select>
                         </div>
                         <div className='birthmonth'>
-                            <text className = 'birthmonth-display'>Birthday Month</text>
+                            <span className = 'birthmonth-display'>Birthday Month</span>
                             <select className = 'birthmonth-input' onChange = {(e)=>this.handleBirthMonth(e.target.value)}>
                                 <option>January</option>
                                 <option>February</option>
@@ -215,7 +215,7 @@ export default class Profile extends Component {
                             </select>
                         </div>
                         <div className='hair'>
-                            <text className = 'hair-display'>Hair Color</text>
+                            <span className = 'hair-display'>Hair Color</span>
                             <select className = 'hair-input' onChange = {(e)=>this.handleHairColor(e.target.value)}>
                                 <option>Brown</option>
                                 <option>Blonde</option>
@@ -225,7 +225,7 @@ export default class Profile extends Component {
                             </select>
                         </div>
                         <div className = 'birthyear'>
-                            <text className = 'birthyear-display'>Birthday Year</text>
+                            <span className = 'birthyear-display'>Birthday Year</span>
                             <select className = 'birthyear-input' onChange = {(e)=>this.handleBirthYear(e.target.value)}>
                                 <option>1960</option>
                                 <option>1961</option>
@@ -290,7 +290,7 @@ export default class Profile extends Component {
                             </select>
                         </div>
                         <div className = 'eye'>
-                            <text className = 'eye-display'>Eye Color</text>
+                            <span className = 'eye-display'>Eye Color</span>
                             <select className = 'eye-input' onChange = {(e)=>this.handleEyeColor(e.target.value)}>
                                 <option>Blue</option>
                                 <option>Green</option>

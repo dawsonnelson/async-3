@@ -1,3 +1,3 @@
 SELECT *
 FROM helo_users
-WHERE first_name = $1;
+WHERE user_id = $1;
