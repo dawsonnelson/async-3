@@ -139,7 +139,7 @@ export default class Profile extends Component {
                     <div className = 'bottom-div'>
                         <div className ='first-name'>
                             <span className = 'first-name-display'>First Name</span>
-                            <input className = 'first-name-input' onChange = {(e)=>this.handleFirstName(e.target.value)}></input>
+                            <input className = 'first-name-input' maxLength="11" onChange = {(e)=>this.handleFirstName(e.target.value)}></input>
                         </div>
                         <div className='hobby'>
                             <span className = 'hobby-display'>Hobby</span>
@@ -151,7 +151,7 @@ export default class Profile extends Component {
                         </div>
                         <div className ='last-name'>
                             <span className = 'last-name-display'>Last Name</span>
-                            <input className = 'last-name-input' onChange = {(e)=>this.handleLastName(e.target.value)}></input>
+                            <input className = 'last-name-input' maxLength='11' onChange = {(e)=>this.handleLastName(e.target.value)}></input>
                         </div>
                         <div className = 'birthday'>
                             <span className = 'birthday-display'>Birthday Day</span>

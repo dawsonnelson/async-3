@@ -64,6 +64,7 @@ app.get('/auth/callback', async (req, res) => {
     // } = resWithUserData;
 
     let auth0_id = resWithUserData.data.sub
+    let user_image = 'https://robohash.org/me'
     // console.log(resWithUserData.sub)
     
     let db = req.app.get('db');
@@ -77,7 +78,7 @@ app.get('/auth/callback', async (req, res) => {
         res.redirect('/#/dashboard');
     } else {
         // console.log('before create user')
-        let user = await db.create_user([auth0_id])
+        let user = await db.create_user([auth0_id, user_image])
         // console.log('after create user')
         req.session.userId = user[0].id;
         res.redirect('/#/dashboard');
@@ -125,6 +126,17 @@ app.get('/api/helo/getInfo', (req,res) =>{
         res.status(200).send(resp[0])
     })
     .catch(console.log)
+})
+
+app.get('/api/helo/allUsers', (req, res) =>{
+    const db = req.app.get('db')
+    const user_id = req.session.user
+
+    db.get_users([ user_id ])
+    .then( resp => {
+        res.status(200).send(resp)
+    })
+    .catch(err => console.log(err))
 })
 
 

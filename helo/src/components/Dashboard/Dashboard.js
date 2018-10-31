@@ -3,18 +3,18 @@ import Nav from '../Nav/Nav'
 import './Dashboard.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import profilePic from '../../assets/profilePic.png'
+// import profilePic from '../../assets/profilePic.png'
 
 export default class Dashboard extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            // userInfo: [],
+            users: [],
             // user_id: '',
-            // user_image: '',
-            first_name: '',
-            last_name: '',
+            user_image: '',
+            first_name: 'Default',
+            last_name: 'Default',
             // gender: '',
             // hair_color: '',
             // eye_color: '',
@@ -33,13 +33,39 @@ export default class Dashboard extends Component {
 
             this.setState({
                 first_name: res.data.first_name,
-                last_name: res.data.last_name
+                last_name: res.data.last_name,
+                user_image: res.data.user_image
+            })
+
+            axios.get('/api/helo/allUsers')
+            .then(res=>{
+                // console.log(res.data)
+
+                this.setState({
+                    users: res.data
+                })
+                // console.log(this.state)
             })
         })
     }
 
+    renderFriends(){
+        console.log(this.state)
+        let users = this.state.users
+        return(
+            <div className = 'friend-box'>
+                <div className = 'friend-pic-div'><img className = "friend-pic" src = {users.user_image} alt = ''/></div>
+                <div className = 'friend-name'></div>
+                <div className = 'add-friend'>
+                    <button className = 'add-friend-button'>Add friend</button>
+                </div>
+            </div>
+        )
+    }
+
     render() {
         // console.log(this.state)
+        let profilePic = this.state.user_image
         return(
             <div className = 'app'>
                 <div className = 'nav'>
@@ -75,6 +101,9 @@ export default class Dashboard extends Component {
                             <option>Birthday Month</option>
                             <option>Birth Year</option>
                         </select>
+                        <div className = 'friend-div'>
+                            {this.renderFriends()}
+                        </div>
                     </div>
                 </div>
             </div>

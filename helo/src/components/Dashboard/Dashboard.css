@@ -38,7 +38,7 @@
 
 .info{
     width: 60%;
-    margin-left: 0px;
+    margin-right: 0px;
     margin-top: 10px;
     float: right;
 }
@@ -129,4 +129,21 @@
 .rec-input{
     margin-left: 5px;
     font-size: 15px;
+}
+
+
+
+
+.friend-div{
+    width: 85%;
+    height: 450px;
+    overflow: scroll;
+}
+
+.friend-box{
+    width: 50%;
+    height: 20%;
+    background-color: black;
+    margin-top: 10px;
+    margin-right: 10px;
 }
