@@ -50,17 +50,23 @@ export default class Dashboard extends Component {
     }
 
     renderFriends(){
-        console.log(this.state)
-        let users = this.state.users
-        return(
-            <div className = 'friend-box'>
-                <div className = 'friend-pic-div'><img className = "friend-pic" src = {users.user_image} alt = ''/></div>
-                <div className = 'friend-name'></div>
-                <div className = 'add-friend'>
-                    <button className = 'add-friend-button'>Add friend</button>
+        // console.log(this.state)
+        // let users = this.state.users
+        // console.log(users.user_image)
+        return this.state.users.map((user) => {
+            return(
+                <div className = 'friend-box'>
+                    <div className = 'friend-pic-div'><img className = "friend-pic" src = {user.user_image} alt = ''/></div>
+                    <div className = 'names'>
+                        <span className = 'friend-first_name'>{user.first_name}</span>
+                        <span className = 'friend-last_name'>{user.last_name}</span>
+                    </div>
+                    <div className = 'add-friend'>
+                        <button className = 'add-friend-button'>Add friend</button>
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        })
     }
 
     render() {
