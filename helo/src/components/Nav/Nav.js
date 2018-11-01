@@ -68,6 +68,22 @@ render() {
                 </div>
             )
         }
+        else {
+            return(
+                <div className = "nav">
+                    <div className = 'div-helo'>
+                    <span className = "helo">Helo</span> <Link to = '/Dashboard'><img className = 'house' src ={image} alt = 'no'></img></Link> <Link to = '/Search'><img className = 'magGlass' src={search} alt = 'no'></img></Link>
+                    </div>
+        
+                    <div className = 'div-title'>
+                        <span className = "title">Unknown</span>
+                    </div>
+                    <div className = 'div-logout'>
+                       <span className = "logout"><Link to = '/'>Logout</Link></span>
+                    </div>
+                </div>
+            )
+        }
     }
 }
 

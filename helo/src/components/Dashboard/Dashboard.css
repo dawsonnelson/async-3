@@ -3,7 +3,7 @@
     box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.25), 0 10px 10px 0 rgba(0, 0, 0, 0.26);
     /* background-color: aqua; */
     /* width: 100%; */
-    height: 100vh;
+    min-height: 100vh;
     
 }
 /* 
@@ -114,7 +114,7 @@
     rgba(0, 0, 0, .1), 0 1px 2px 0 
     rgba(0, 0, 0, .2);
 
-    overflow: scroll;
+    /* overflow: scroll; */
 }
 
 .rec-friend {
@@ -135,22 +135,28 @@
 
 
 .friend-div{
+    align-content: flex-start;
     display: flex;
-    width: 85%;
-    height: 450px;
-    overflow: scroll;
-    margin-left: 50px;
-    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    min-height: 450px;
+    /* overflow-y: scroll; */
+    /* margin-left: 50px; */
+    justify-content: space-evenly;
     margin-top: 20px;
 }
 
 .friend-box{
-    width: 50%;
+    width: 45%;
     height: 20%;
-    background-color: yellow;
+    /* background-color: ; */
     margin-top: 10px;
-    margin-left: 20px;
+    /* margin-left: 20px; */
     display: flex;
+    /* border-bottom: 1px solid black; */
+    border-left: 1px solid grey;
+    /* border-right: 1px solid black; */
+    box-shadow: 2px 1px
 }
 
 .friend-pic-div{
@@ -187,7 +193,7 @@
 }
 
 .add-friend{
-    width: 33%
+    width: 30%
 }
 
 .add-friend-button{

@@ -11,6 +11,7 @@ export default class Dashboard extends Component {
 
         this.state = {
             users: [],
+            filterdUsers: [],
             // user_id: '',
             user_image: '',
             first_name: 'Default',
@@ -23,6 +24,8 @@ export default class Dashboard extends Component {
             // birth_month: '',
             // birth_year: ''
         }
+
+        // this.filterUsers = this.filterUsers.bind(this)
     }
 
     componentDidMount(){
@@ -34,7 +37,9 @@ export default class Dashboard extends Component {
             this.setState({
                 first_name: res.data.first_name,
                 last_name: res.data.last_name,
-                user_image: res.data.user_image
+                user_image: res.data.user_image,
+                user_id: res.data.user_id,
+                filterdUsers: null
             })
 
             axios.get('/api/helo/allUsers')
@@ -49,24 +54,54 @@ export default class Dashboard extends Component {
         })
     }
 
+    // handleAddFriend(i){
+    //     axios.post('/api/helo/addFriend', {user_id: i})
+    // }
+
+    // filterUsers = (userFilter) => {
+    //     let filterdUsers = this.state.users
+    //     filterdUsers = filterdUsers.filter((user) =>{
+    //         let userName = user.first_name + user.last_name
+    //         return userName.indexOf(
+    //             userFilter) !== -1
+    //     })
+
+    //     this.setState({
+    //         filterdUsers
+    //     })
+    //     console.log(this.state.filterdUsers)
+    // }
+
     renderFriends(){
         // console.log(this.state)
         // let users = this.state.users
         // console.log(users.user_image)
         return this.state.users.map((user) => {
-            return(
-                <div className = 'friend-box'>
-                    <div className = 'friend-pic-div'><img className = "friend-pic" src = {user.user_image} alt = ''/></div>
-                    <div className = 'names'>
-                        <span className = 'friend-first_name'>{user.first_name}</span>
-                        <span className = 'friend-last_name'>{user.last_name}</span>
+            var stateUser = this.state.user_id
+            if(stateUser !== user.user_id){
+
+                // console.log(this.state.user_id)
+                // console.log(user.user_id)
+                return(
+                    <div className = 'friend-box'>
+                        <div className = 'friend-pic-div'><img className = "friend-pic" src = {user.user_image} alt = ''/></div>
+                        <div className = 'names'>
+                            <span className = 'friend-first_name'>{user.first_name}</span>
+                            <span className = 'friend-last_name'>{user.last_name}</span>
+                        </div>
+                        <div className = 'add-friend'>
+                            <button className = 'add-friend-button' onClick = {this.handleAddFriend}>Add friend</button>
+                        </div>
                     </div>
-                    <div className = 'add-friend'>
-                        <button className = 'add-friend-button'>Add friend</button>
-                    </div>
-                </div>
-            )
+                )
+            } else {
+                return(
+                    []
+                )
+            }
         })
+
+
     }
 
     render() {
@@ -109,6 +144,7 @@ export default class Dashboard extends Component {
                         </select>
                         <div className = 'friend-div'>
                             {this.renderFriends()}
+                            
                         </div>
                     </div>
                 </div>

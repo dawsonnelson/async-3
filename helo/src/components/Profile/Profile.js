@@ -18,22 +18,26 @@ export default class Profile extends Component {
             birthday: 1,
             birthMonth: 'January',
             birthYear: 1960,
+            image: null
         }
 
         this.handleUpdate = this.handleUpdate.bind(this)
 
     }
 
-    // componentDidMount(){
-    //     axios.get(`/api/userData`)
-    //     .then(res=>{
-    //         this.setState({
-    //             recived: res.data
-    //         })
-    //         // console.log(res.session)
+    componentDidMount(){
+        console.log(this.state)
+        axios.get('/api/helo/getInfo')
+        .then(res=>{
+            console.log(res)
 
-    //     })
-    // }
+            this.setState({
+                firstName: res.data.first_name,
+                lastName: res.data.last_name,
+                image: res.data.user_image
+            })
+        })
+    }
 
     handleCancel(){
         this.setState({
@@ -126,7 +130,7 @@ export default class Profile extends Component {
 
                 <div className = 'content'>
                     <div className = 'top-div'>
-                        <img className = 'top-pic' src = {this.props.urlInput} alt=''/>
+                        <img className = 'top-pic' src = {this.state.image} alt=''/>
                         <div className = 'top-name-display'>
                             <span className = 'top-name'>{this.state.firstName} {this.state.lastName}</span>
                         </div>
@@ -139,7 +143,7 @@ export default class Profile extends Component {
                     <div className = 'bottom-div'>
                         <div className ='first-name'>
                             <span className = 'first-name-display'>First Name</span>
-                            <input className = 'first-name-input' maxLength="11" onChange = {(e)=>this.handleFirstName(e.target.value)}></input>
+                            <input className = 'first-name-input' maxLength="11" placeholder={this.state.firstName} onChange = {(e)=>this.handleFirstName(e.target.value)}></input>
                         </div>
                         <div className='hobby'>
                             <span className = 'hobby-display'>Hobby</span>
@@ -151,7 +155,7 @@ export default class Profile extends Component {
                         </div>
                         <div className ='last-name'>
                             <span className = 'last-name-display'>Last Name</span>
-                            <input className = 'last-name-input' maxLength='11' onChange = {(e)=>this.handleLastName(e.target.value)}></input>
+                            <input className = 'last-name-input' maxLength='11'placeholder= {this.state.lastName} onChange = {(e)=>this.handleLastName(e.target.value)}></input>
                         </div>
                         <div className = 'birthday'>
                             <span className = 'birthday-display'>Birthday Day</span>

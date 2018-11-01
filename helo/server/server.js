@@ -139,6 +139,19 @@ app.get('/api/helo/allUsers', (req, res) =>{
     .catch(err => console.log(err))
 })
 
+app.post('/api/helo/addFriend', (req, res) => {
+    const db = req.app.get('db');
+    const { user_id } = req.session.user.user_id;
+    console.log(req.session.user.user_id)
+    console.log(req.body.user_id)
+
+    db.add_friend([user_id, req.body.user_id])
+    .then(addFriend => {
+        res.status(200).send(addFriend)
+    })
+    .catch(err => console.log(err))
+})
+
 
 
 app.listen(SERVER_PORT, () =>{

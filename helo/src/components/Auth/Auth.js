@@ -15,7 +15,7 @@ export default class Auth extends Component {
     render(){
         console.log(process.env)
         return(
-            <div className = 'app'>
+            <div id = 'app'>
                 <div className = 'background'>
                     <div className = 'log-box'>
                         <img className = 'logo' src ={logo} alt = 'no'></img>
