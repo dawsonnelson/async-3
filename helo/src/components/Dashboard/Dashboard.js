@@ -11,7 +11,7 @@ export default class Dashboard extends Component {
 
         this.state = {
             users: [],
-            filterdUsers: [],
+            // filterdUsers: [],
             // user_id: '',
             user_image: '',
             first_name: 'Default',
@@ -24,8 +24,9 @@ export default class Dashboard extends Component {
             // birth_month: '',
             // birth_year: ''
         }
-
+ 
         // this.filterUsers = this.filterUsers.bind(this)
+        this.handleAddFriend = this.handleAddFriend.bind(this)
     }
 
     componentDidMount(){
@@ -54,9 +55,13 @@ export default class Dashboard extends Component {
         })
     }
 
-    // handleAddFriend(i){
-    //     axios.post('/api/helo/addFriend', {user_id: i})
-    // }
+    handleAddFriend(i){
+        axios.post('/api/helo/addFriend', {user_id: i})
+        .then(res=>{
+
+        })
+        
+    }
 
     // filterUsers = (userFilter) => {
     //     let filterdUsers = this.state.users
@@ -73,7 +78,7 @@ export default class Dashboard extends Component {
     // }
 
     renderFriends(){
-        // console.log(this.state)
+        // console.log(this.state) 
         // let users = this.state.users
         // console.log(users.user_image)
         return this.state.users.map((user) => {
@@ -90,7 +95,7 @@ export default class Dashboard extends Component {
                             <span className = 'friend-last_name'>{user.last_name}</span>
                         </div>
                         <div className = 'add-friend'>
-                            <button className = 'add-friend-button' onClick = {this.handleAddFriend}>Add friend</button>
+                            <button className = 'add-friend-button' onClick = {this.handleAddFriend(user.user_id)}>Add friend</button> 
                         </div>
                     </div>
                 )

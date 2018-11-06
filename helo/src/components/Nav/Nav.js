@@ -4,7 +4,7 @@ import '../Nav/Nav.css'
 import image from '../../header_logo.png'
 import search from '../../assets/search.png'
 import axios from 'axios'
-import Search from '../Search/Search';
+// import Search from '../Search/Search';
 
 export default class Nav extends Component{
     constructor(props){
