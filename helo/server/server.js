@@ -139,18 +139,48 @@ app.get('/api/helo/allUsers', (req, res) =>{
     .catch(err => console.log(err))
 })
 
+app.get('/api/helo/getFriends', (req,res) =>{
+    const db = req.app.get('db')
+    // console.log('app.get start')
+    // console.log(req.session.user.user_id)
+    db.get_friends([req.session.user.user_id])
+    .then( resp => {
+        res.status(200).send(resp)
+    })
+    .catch(err => console.log(err))
+})
+
 app.post('/api/helo/addFriend', (req, res) => {
     const db = req.app.get('db');
-    const { user_id } = req.session.user.user_id;
+    // const { user_id } = req.session.user.user_id;
+    console.log('add start')
     console.log(req.session.user.user_id)
     console.log(req.body.user_id)
 
-    db.add_friend([user_id, req.body.user_id])
+    db.add_friend([req.session.user.user_id, req.body.user_id])
     .then(addFriend => {
         res.status(200).send(addFriend)
     })
     .catch(err => console.log(err))
 })
+
+app.delete('/api/helo/removeFriend/:friend_id', (req, res) => {
+    const db = req.app.get('db');
+    // const { user_id } = req.session.user;
+
+    console.log('delete')
+    console.log(req.session.user.user_id)
+    console.log(req.params.friend_id)
+
+    db.remove_friend([req.session.user.user_id, req.params.friend_id])
+    .then(removeFriend => {
+        res.status(200).send(removeFriend)
+    })
+    .catch(err => console.log(err))
+
+
+})
+
 
 
 

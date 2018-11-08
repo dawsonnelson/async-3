@@ -9,6 +9,7 @@ export default class Search extends Component {
 
         this.state = {
             users: [],
+            friends: [],
             first_name: null,
             last_name: null,
             name: null
@@ -19,19 +20,86 @@ export default class Search extends Component {
     }
 
     componentDidMount(){
+        axios.get('/api/helo/getInfo')
+        .then(res=>{
+            console.log(res)
+
+            this.setState({
+                user_id: res.data.user_id
+            })
+        })
         axios.get('/api/helo/allUsers')
         .then(res=>{
             this.setState({
                 users: res.data
             })
-            console.log(this.state.users)
+            // console.log(this.state.users)
+        })
+
+        axios.get('/api/helo/getFriends')
+        .then(res=>{
+            // console.log(res.data)
+            this.setState({
+                friends: res.data
+            })
+            console.log(this.state.friends)
         })
     }
 
+    handleRemove(i){
+        console.log(i)
+        axios.delete(`/api/helo/removeFriend/${i}`)
+        .then(res=>{
+            window.location.reload()
+        })
+        
+    }
+
+    handleAddFriend(i){
+        axios.post('/api/helo/addFriend', {user_id: i})
+        .then(res=>{
+            window.location.reload()
+        })
+    }
+
+    renderUsers(){
+        return this.state.users.map((user) =>{
+            var stateUser = this.state.user_id
+
+            if(stateUser !== user.user_id){
+
+                // console.log(stateUser)
+                // console.log(user.user_id)
+
+                return(
+                    <div className = 'friend-box'>
+                        <div className = 'friend-pic-div'><img className = "friend-pic" src = {user.user_image} alt = ''/></div>
+                        <div className = 'names'>
+                            <span className = 'friend-first_name'>{user.first_name}</span>
+                            <span className = 'friend-last_name'>{user.last_name}</span>
+                        </div>
+                        <div className = 'add-friend'>
+                             <button className = 'add-friend-button' onClick = {() =>this.handleAddFriend(user.user_id)}>Add friend</button>
+                        </div>
+                    </div>
+                )
+            } else {
+                return(
+                    []
+                )
+            }
+        })
+    }
     renderFriends(){
 
-        return this.state.users.filter((input) => input.input = this.state.name ).map((user) => {
-            return(
+        return this.state.friends.map((user) => {
+            // console.log(this.state.user_id)
+            // console.log(user)
+
+            var stateUser = this.state.user_id
+            if(stateUser === this.state.user_id){
+
+                return(
                 <div className = 'friend-box'>
                     <div className = 'friend-pic-div'><img className = "friend-pic" src = {user.user_image} alt = ''/></div>
                     <div className = 'names'>
@@ -39,10 +107,16 @@ export default class Search extends Component {
                         <span className = 'friend-last_name'>{user.last_name}</span>
                     </div>
                     <div className = 'add-friend'>
-                        <button className = 'add-friend-button' onClick = {this.handleAddFriend}>Add friend</button>
+                        <button className = 'remove' onClick = {() =>this.handleRemove(user.friend_id)}>Remove friend</button>
                     </div>
                 </div>
-            )
+
+                )
+            } else {
+                return(
+                    []
+                )
+            }
         })
     }
 
@@ -72,6 +146,9 @@ export default class Search extends Component {
                         </div>
                         <div className = 'friend-div'>
                             {this.renderFriends()}
+                        </div>
+                        <div className = 'next-div'>
+                            {this.renderUsers()}
                         </div>
                     </div>
                 </div>

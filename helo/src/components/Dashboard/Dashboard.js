@@ -11,11 +11,13 @@ export default class Dashboard extends Component {
 
         this.state = {
             users: [],
+            friends: [],
             // filterdUsers: [],
             // user_id: '',
             user_image: '',
             first_name: 'Default',
             last_name: 'Default',
+            number: true
             // gender: '',
             // hair_color: '',
             // eye_color: '',
@@ -45,12 +47,21 @@ export default class Dashboard extends Component {
 
             axios.get('/api/helo/allUsers')
             .then(res=>{
-                // console.log(res.data)
+                console.log(res.data)
 
                 this.setState({
                     users: res.data
                 })
-                // console.log(this.state)
+                console.log(this.state.friends)
+            })
+
+            axios.get('/api/helo/getFriends')
+            .then(res=>{
+                console.log(res.data)
+                this.setState({
+                    friends: res.data
+                })
+                console.log(this.state)
             })
         })
     }
@@ -61,6 +72,14 @@ export default class Dashboard extends Component {
 
         })
         
+    }
+
+    handleRemove(){
+        axios.delete('/api/helo/removeFriend')
+        .then(res=>{
+            window.location.reload()
+        })
+        console.log('yeah')
     }
 
     // filterUsers = (userFilter) => {
@@ -83,9 +102,11 @@ export default class Dashboard extends Component {
         // console.log(users.user_image)
         return this.state.users.map((user) => {
             var stateUser = this.state.user_id
+            
             if(stateUser !== user.user_id){
 
-                // console.log(this.state.user_id)
+                console.log(this.state.user_id)
+                console.log(this.state)
                 // console.log(user.user_id)
                 return(
                     <div className = 'friend-box'>
@@ -95,7 +116,7 @@ export default class Dashboard extends Component {
                             <span className = 'friend-last_name'>{user.last_name}</span>
                         </div>
                         <div className = 'add-friend'>
-                            <button className = 'add-friend-button' onClick = {this.handleAddFriend(user.user_id)}>Add friend</button> 
+                            { this.state.number ? <button className = 'add-friend-button' onClick = {() =>this.handleAddFriend(user.user_id)}>Add friend</button> : <button className = 'remove' onClick = {()=>this.handleRemove()}>Remove Friend</button>}
                         </div>
                     </div>
                 )
